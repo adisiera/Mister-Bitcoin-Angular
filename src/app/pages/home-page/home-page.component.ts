@@ -3,6 +3,7 @@ import { User } from '../../model/user.model';
 import { UserService } from '../../services/user.service';
 import { BitcoinService } from '../../services/bitcoin.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -11,8 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private userService: UserService, private bitcoinService: BitcoinService) { }
-  user: User = null;
+  constructor(private userService: UserService, private bitcoinService: BitcoinService, private router: Router) { }
+  user: User;
   rate: any;
   subscription: Subscription
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class HomePageComponent implements OnInit {
     this.user = this.userService.getUser()
   }
 
-  loadRate(){
+  loadRate() {
     this.subscription = this.bitcoinService.getRate(this.user.coins).subscribe(rate => {
       this.rate = rate
     })

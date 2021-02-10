@@ -1,0 +1,18 @@
+.transfer-coins{
+    & input {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .transfer-btn{
+        margin: 10px;
+        box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%);
+        border: 0;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        background-color: rgb(42, 206, 42);
+        color: white;
+        cursor: pointer;
+    }
+}

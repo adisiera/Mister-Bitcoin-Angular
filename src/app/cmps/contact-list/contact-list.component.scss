@@ -1,6 +1,10 @@
 .contact-list{
     display: flex;
     flex-wrap: wrap;
-    width: 900px;
+    width: 100%;
     gap: 1rem;
+    padding: 20px;
+    @media (max-width: 980px){
+        padding: 30px;
+    }
 }

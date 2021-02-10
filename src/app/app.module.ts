@@ -14,9 +14,12 @@ import { FormsModule } from '@angular/forms';
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { AboutComponent } from './cmps/about/about.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
-
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { MovesListComponent } from './cmps/moves-list/moves-list.component';
+import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.component';
+import { MovesPreviewComponent } from './cmps/moves-preview/moves-preview.component';
 
 
 @NgModule({
@@ -31,7 +34,11 @@ import { HttpClientModule } from '@angular/common/http';
     ContactFilterComponent,
     AppHeaderComponent,
     AboutComponent,
-    ContactEditComponent
+    ContactEditComponent,
+    SignupPageComponent,
+    MovesListComponent,
+    TransferFundComponent,
+    MovesPreviewComponent
 
   ],
   imports: [

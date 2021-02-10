@@ -1,8 +1,9 @@
 <div class="contact-page">
     <h2>Contacts</h2>
-    <app-contact-filter (onFilter) = "onFilter($event)"></app-contact-filter>
+    <div class="contact-nav">
+        <app-contact-filter (onFilter) = "onFilter($event)"></app-contact-filter><button class="toggle-btn" (click)="toggleOpenEdit()"><img src="../../../assets/imgs/plus.png"></button>
+    </div>
     <app-contact-list [contacts]="contacts" *ngIf="!selectedContactId" (onSelectContact)="selectedContactId=$event"></app-contact-list>
     <app-contact-details-page [contactId]="selectedContactId" *ngIf="selectedContactId" (onSwitchContact)="selectedContactId=null" ></app-contact-details-page>
-    <button class="toggle-btn" (click)="toggleOpenEdit()"><img src="../../../assets/imgs/plus.png"></button>
     <router-outlet></router-outlet>
 </div>

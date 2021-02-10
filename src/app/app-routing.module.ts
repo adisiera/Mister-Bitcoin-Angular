@@ -6,24 +6,22 @@ import { ContactEditComponent } from './pages/contact-edit/contact-edit.componen
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { ContactResolverService } from './services/contact-resolver.service';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { AuthGuard } from './services/guard/auth.guard';
 
 
 const routes: Routes = [
-  { path: 'contact/edit/:id', resolve: {contact: ContactResolverService}, component: ContactEditComponent },
-  { path: 'contact/edit', resolve: {contact: ContactResolverService}, component: ContactEditComponent },
-  { path: 'contact/:id', resolve: {contact: ContactResolverService}, component: ContactDetailsPageComponent },
+  { path: 'contact/edit/:id', resolve: { contact: ContactResolverService }, component: ContactEditComponent },
+  { path: 'contact/edit', resolve: { contact: ContactResolverService }, component: ContactEditComponent },
+  { path: 'contact/:id', resolve: { contact: ContactResolverService }, component: ContactDetailsPageComponent },
   { path: 'contact', component: ContactPageComponent },
   { path: 'chart', component: StatisticPageComponent },
-  { path: '', component: HomePageComponent }
+  { path: 'signup', component: SignupPageComponent },
+  { path: '**', component: HomePageComponent, canActivate:[AuthGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-
-
-
-
-
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

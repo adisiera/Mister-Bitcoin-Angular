@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { ContactService } from './contact.service';
 import { User } from '../model/user.model';
+import { Move } from '../model/move.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +8,54 @@ import { User } from '../model/user.model';
 export class UserService {
 
   constructor() { }
-  private gUsers: User[] = [
-    {
-      _id: '2989427',
-      name: 'Puki Ben David',
+  user: User = null
+  gMoves: []
+  getUser() {
+    const user = localStorage.getItem('user')
+    if (!user) return 
+    this.user = JSON.parse(user)
+    return this.user
+  }
+
+  signup(name) {
+    const user = new User()
+    user.name = name
+    user.setId()
+    this.user = user
+    this._saveUser()
+  }
+
+  public getEmptyUser() {
+    return {
+      _id: '',
+      name: '',
       coins: 100,
       moves: []
     }
-  ]
-
-  getUser():User{
-    return this.gUsers[0]
   }
-  
+
+  public addMove(contact,amount){
+    console.log('contact',contact);
+    console.log('amount',amount);
+    const move = new Move()
+    move.amount = amount
+    move.toId = contact._id
+    move.to = contact.name
+    const moves = [move, ...this.user.moves]
+    const user = {...this.user, moves}
+    user.coins -= amount
+    this.user = user
+    this._saveUser()
+    this._saveMove()
+    return user 
+  }
+
+  private _saveUser() {
+    localStorage.setItem('user', JSON.stringify(this.user))
+  }
+
+  private _saveMove(){
+    localStorage.setItem('move', JSON.stringify(this.gMoves))
+  }
 
 }
